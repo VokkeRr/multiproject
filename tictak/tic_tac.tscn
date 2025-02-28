@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhglkpxcu22h2"]
+
+[ext_resource type="Script" path="res://tictak/tic_tac.gd" id="1_s3uwd"]
+[ext_resource type="PackedScene" uid="uid://ckiuyamxpq68v" path="res://tictak/board.tscn" id="2_6csip"]
+
+[node name="TicTac" type="Node"]
+script = ExtResource("1_s3uwd")
+
+[node name="Board" parent="." instance=ExtResource("2_6csip")]
+position = Vector2(300, 300)
