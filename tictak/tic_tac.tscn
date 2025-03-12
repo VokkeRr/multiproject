@@ -1,10 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhglkpxcu22h2"]
+[gd_scene load_steps=10 format=3 uid="uid://dhglkpxcu22h2"]
 
-[ext_resource type="Script" path="res://tictak/tic_tac.gd" id="1_s3uwd"]
+[ext_resource type="Script" uid="uid://c4upgitefchxf" path="res://tictak/tic_tac.gd" id="1_s3uwd"]
 [ext_resource type="PackedScene" uid="uid://ckiuyamxpq68v" path="res://tictak/board.tscn" id="2_6csip"]
+[ext_resource type="PackedScene" uid="uid://5cc6y0cxq0l5" path="res://tictak/circle.tscn" id="2_r2hvj"]
+[ext_resource type="PackedScene" uid="uid://xyxx6tn8p462" path="res://tictak/cross.tscn" id="3_pkk4c"]
+[ext_resource type="Texture2D" uid="uid://c24wgiidf4yfq" path="res://assets/cross.png" id="5_rtj2p"]
+[ext_resource type="Texture2D" uid="uid://dtlgfokvl5itr" path="res://assets/circle.png" id="6_5ng2q"]
+[ext_resource type="PackedScene" uid="uid://utrkqfit3jfl" path="res://tictak/game_over_menu.tscn" id="7_5ng2q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu3g8"]
+bg_color = Color(0, 0.666667, 0.980392, 1)
+border_width_left = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgedn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
 
 [node name="TicTac" type="Node"]
 script = ExtResource("1_s3uwd")
+circle_scene = ExtResource("2_r2hvj")
+cross_scene = ExtResource("3_pkk4c")
 
 [node name="Board" parent="." instance=ExtResource("2_6csip")]
 position = Vector2(300, 300)
+
+[node name="SidePanel" type="Panel" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wu3g8")
+
+[node name="PlayerLable" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 120.0
+offset_right = 900.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 46
+text = "Next Player:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 650.0
+offset_top = 200.0
+offset_right = 850.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qgedn")
+
+[node name="cross" type="Sprite2D" parent="Panel"]
+visible = false
+position = Vector2(102, 96)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_rtj2p")
+
+[node name="circle" type="Sprite2D" parent="Panel"]
+visible = false
+position = Vector2(102, 96)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_5ng2q")
+
+[node name="GameOverMenu" parent="." instance=ExtResource("7_5ng2q")]
+process_mode = 2
+
+[connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]

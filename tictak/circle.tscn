@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://dtlgfokvl5itr" path="res://assets/circle.png" id="1_qe67v"]
 
 [node name="Circle" type="Sprite2D"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_qe67v")

@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://c24wgiidf4yfq" path="res://assets/cross.png" id="1_luxxl"]
 
 [node name="Cross" type="Sprite2D"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_luxxl")
